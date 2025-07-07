@@ -1,13 +1,12 @@
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
-import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import mainRouter from '@backend/routes';
 import { connectDB } from '@backend/config/database';
 import { initWhatsApp } from '@backend/services/whatsappService';
-
-dotenv.config();
+import { logger as appLogger } from 'utils';
+import { config } from '@backend/config';
 
 connectDB();
 
@@ -15,15 +14,13 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:3000',
-        credentials: true,
+        origin: config.cors.origin,
+        credentials: config.cors.credentials,
     }
 });
 
 // Initialize WhatsApp Service with socket.io instance
 initWhatsApp(io);
-
-const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cookieParser());
@@ -44,8 +41,8 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+server.listen(config.port, () => {
+    console.log(`🚀 Server is running on port ${config.port} in ${config.nodeEnv} mode`);
 });
 
 export default app; 
