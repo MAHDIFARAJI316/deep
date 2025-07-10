@@ -20,6 +20,7 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/deepchat
       - OPENAI_API_KEY=${OPENAI_API_KEY} # Should be in a .env file
+      - JWT_SECRET=development-secret
     depends_on:
       - mongo
 
