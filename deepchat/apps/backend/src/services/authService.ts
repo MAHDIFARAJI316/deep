@@ -1,7 +1,8 @@
 import User from '@backend/models/User';
 import { generateToken } from '@backend/utils/token';
+import { randomInt } from 'crypto';
 
-const generateOtp = () => '123456'; // Mock OTP
+const generateOtp = () => randomInt(100000, 999999).toString();
 
 export const requestOtp = async (phone: string) => {
     let user = await User.findOne({ phone });

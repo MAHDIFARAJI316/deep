@@ -31,7 +31,8 @@ describe('Auth Module', () => {
             expect(res.body.message).toBe('OTP sent successfully.');
             const user = await User.findOne({ phone: validPhone });
             expect(user).not.toBeNull();
-            expect(user?.otp).toBe(mockOtp);
+            expect(user?.otp).toBeDefined();
+            expect(user?.otp).toMatch(/^[0-9]{6}$/);
         });
 
         it('should return a validation error for an invalid phone number', async () => {
