@@ -1,9 +1,11 @@
 import supertest from 'supertest';
-import app from '@backend/server';
 import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 import User from '@backend/models/User';
 
-const request = supertest(app);
+let request: supertest.SuperTest<supertest.Test>;
+let mongoServer: MongoMemoryServer;
+let app: any;
 
 describe('Auth Module', () => {
     const validPhone = '09123456789';
@@ -11,9 +13,11 @@ describe('Auth Module', () => {
     const mockOtp = '123456';
 
     beforeAll(async () => {
-        // Use an in-memory MongoDB server for tests if available, or connect to a test DB
-        // For simplicity, we'll use the actual DB and clean up
-        await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/deepchat-test');
+        mongoServer = await MongoMemoryServer.create();
+        process.env.MONGO_URI = mongoServer.getUri();
+        const mod = await import('@backend/server');
+        app = mod.default;
+        request = supertest(app);
     });
 
     afterEach(async () => {
@@ -21,7 +25,8 @@ describe('Auth Module', () => {
     });
 
     afterAll(async () => {
-        await mongoose.connection.close();
+        await mongoose.disconnect();
+        await mongoServer.stop();
     });
 
     describe('POST /api/auth/request-otp', () => {
