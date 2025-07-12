@@ -1,5 +1,6 @@
 import supertest from 'supertest';
-import app from '@backend/server';
+process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret';
+const app = require('@backend/server').default;
 import mongoose from 'mongoose';
 import User from '@backend/models/User';
 
