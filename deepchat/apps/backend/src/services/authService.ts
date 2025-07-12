@@ -1,7 +1,9 @@
+import crypto from 'crypto';
 import User from '@backend/models/User';
 import { generateToken } from '@backend/utils/token';
+import { logger } from 'utils';
 
-const generateOtp = () => '123456'; // Mock OTP
+const generateOtp = () => crypto.randomInt(100000, 999999).toString();
 
 export const requestOtp = async (phone: string) => {
     let user = await User.findOne({ phone });
@@ -24,7 +26,7 @@ export const requestOtp = async (phone: string) => {
     }
 
     await user.save();
-    console.log(`Mock OTP for ${phone}: ${otp}`); // In production, send via SMS
+    logger.info(`Mock OTP for ${phone}: ${otp}`); // In production, send via SMS
     return { message: 'OTP sent successfully.' };
 };
 
