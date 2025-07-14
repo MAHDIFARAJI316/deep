@@ -106,7 +106,7 @@ export const startWhatsAppSession = async (req: IAuthRequest, lineId: string) =>
 
         if (qr) {
             const qrCodeUrl = await qrcode.toDataURL(qr);
-            io.to(user._id.toString()).emit('qr', { lineId, qr: qrCodeUrl });
+            io.to((user._id as any).toString()).emit('qr', { lineId, qr: qrCodeUrl });
         }
 
         if (connection === 'close') {
@@ -124,10 +124,10 @@ export const startWhatsAppSession = async (req: IAuthRequest, lineId: string) =>
             const line = user.whatsappLines.find(l => l.lineId === lineId);
             if(line){
                 line.isconnected = true;
-                line.phoneNumber = state.creds.me.id.split(':')[0];
+                line.phoneNumber = state.creds.me?.id.split(':')[0] || null;
                 await user.save();
             }
-            io.to(user._id.toString()).emit('whatsapp.status', { lineId, status: 'connected', phoneNumber: line?.phoneNumber });
+            io.to((user._id as any).toString()).emit('whatsapp.status', { lineId, status: 'connected', phoneNumber: line?.phoneNumber });
         }
     });
 
@@ -164,7 +164,7 @@ export const startWhatsAppSession = async (req: IAuthRequest, lineId: string) =>
 
                 try {
                     await newMessage.save();
-                    io.to(user._id.toString()).emit('message.new', newMessage);
+                    io.to((user._id as any).toString()).emit('message.new', newMessage);
                 } catch (e) {
                     // Avoid crashing on duplicate messageId
                     if (!(e instanceof Error && e.message.includes('duplicate key'))) {

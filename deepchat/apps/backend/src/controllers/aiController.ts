@@ -59,7 +59,7 @@ export const getAIReplyHandler = async (req: IAuthRequest, res: Response) => {
         const user = req.user!;
         
         const messages = await Message.find({ lineId, chatId }).sort({ timestamp: -1 }).limit(10);
-        const messageHistory = messages.map(m => `${m.senderId === user._id.toString() ? 'Me' : 'Customer'}: ${m.text}`);
+        const messageHistory = messages.map(m => `${m.senderId === (user._id as any).toString() ? 'Me' : 'Customer'}: ${m.text}`);
         const lastMessage = messages[0]?.text || '';
 
         const reply = await getAIReply(user, messageHistory.reverse(), lastMessage);

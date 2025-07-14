@@ -5,9 +5,9 @@ import { IUser } from '@backend/models/User';
 
 export const generateToken = (user: IUser) => {
     const payload = { id: user._id, role: user.role };
-    return jwt.sign(payload, config.jwtSecret, {
+    return jwt.sign(payload, config.jwtSecret as jwt.Secret, {
         expiresIn: config.jwtExpiresIn,
-    });
+    } as jwt.SignOptions);
 };
 
 export const sendTokenCookie = (res: Response, token: string) => {

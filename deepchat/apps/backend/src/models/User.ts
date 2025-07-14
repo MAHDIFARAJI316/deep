@@ -70,7 +70,7 @@ const UserSchema = new Schema<IUser>({
     },
     aiProfile: {
         type: AIProfileSchema,
-        default: () => ({ isTrained: false, onboardingAnswers: {} }),
+        default: () => ({ isTrained: false, onboardingAnswers: new Map() }),
     }
 });
 

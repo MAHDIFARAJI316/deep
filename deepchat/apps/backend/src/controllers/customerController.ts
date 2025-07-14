@@ -37,7 +37,7 @@ export const getCustomerByIdHandler = async (req: IAuthRequest, res: Response) =
         const { id } = req.params;
         const customer = await CustomerProfile.findById(id);
 
-        if (!customer || customer.assignedTo?.toString() !== req.user!._id.toString()) {
+        if (!customer || customer.assignedTo?.toString() !== (req.user!._id as any).toString()) {
             return res.status(404).json({ message: 'Customer not found' });
         }
         
@@ -65,7 +65,7 @@ export const updateCustomerHandler = async (req: IAuthRequest, res: Response) =>
         }
 
         const customer = await CustomerProfile.findById(id);
-        if (!customer || customer.assignedTo?.toString() !== req.user!._id.toString()) {
+        if (!customer || customer.assignedTo?.toString() !== (req.user!._id as any).toString()) {
             return res.status(404).json({ message: 'Customer not found' });
         }
 

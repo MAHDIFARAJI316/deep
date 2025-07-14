@@ -16,7 +16,7 @@ export const initiateConnectionHandler = async (req: IAuthRequest, res: Response
         }
         
         const lineId = uuidv4();
-        user.whatsappLines.push({ lineId, isconnected: false, phoneNumber: null });
+        user.whatsappLines.push({ lineId, isconnected: false, phoneNumber: null, isAiEnabled: false });
         await user.save();
         
         const result = await whatsappService.startWhatsAppSession(req, lineId);
