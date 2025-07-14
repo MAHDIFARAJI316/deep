@@ -9,6 +9,7 @@ const phoneSchema = z.object({
 
 const otpSchema = phoneSchema.extend({
     otp: z.string().length(6, 'OTP must be 6 digits.'),
+    twoFactorToken: z.string().length(6).optional(),
 });
 
 
