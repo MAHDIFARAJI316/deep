@@ -10,7 +10,7 @@ dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 const envSchema = z.object({
     // Server
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
-    PORT: z.string().transform(val => parseInt(val, 10)).default('5000'),
+    PORT: z.string().transform(val => parseInt(val, 10)).default(5000),
     
     // Database
     DATABASE_URL: z.string().min(1, 'Database URL is required'),
@@ -29,10 +29,10 @@ const envSchema = z.object({
     // Rate Limiting
     RATE_LIMIT_WINDOW_MS: z.string()
         .transform(val => parseInt(val, 10))
-        .default('900000'), // 15 minutes
+        .default(900000), // 15 minutes
     RATE_LIMIT_MAX_REQUESTS: z.string()
         .transform(val => parseInt(val, 10))
-        .default('100'),
+        .default(100),
 });
 
 // Validate environment variables

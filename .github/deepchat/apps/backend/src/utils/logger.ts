@@ -39,11 +39,12 @@ export const customLogger = {
     warn: (message: string, ...args: any[]) => logger.warn(message, ...args),
     error: (message: string | Error, ...args: any[]) => {
         if (message instanceof Error) {
+            const { message: errMessage, stack, ...rest } = message;
             logger.error({
                 err: {
-                    message: message.message,
-                    stack: message.stack,
-                    ...message,
+                    message: errMessage,
+                    stack,
+                    ...rest,
                 },
                 ...args,
             });
