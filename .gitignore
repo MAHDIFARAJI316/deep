@@ -22,13 +22,14 @@ out/
 .turbo/
 *.tsbuildinfo
 
-# IDE
+# IDE & Editors
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 .DS_Store
+Thumbs.db
 
 # Testing
 coverage/
@@ -41,16 +42,13 @@ playwright-report/
 logs/
 *.log
 
-# Misc
+# Cache & Temporary
 .cache/
 .temp/
 .tmp/
 *.pid
 *.seed
 *.pid.lock
-
-# OS
-Thumbs.db
 
 # Certificates
 *.pem
@@ -70,3 +68,13 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
