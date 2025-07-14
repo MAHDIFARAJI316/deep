@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import mainRouter from '@backend/routes';
 import { connectDB } from '@backend/config/database';
 import { initWhatsApp } from '@backend/services/whatsappService';
+import { logger as appLogger } from 'utils';
 
 dotenv.config();
 
@@ -45,7 +46,7 @@ io.on('connection', (socket) => {
 });
 
 server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    appLogger.info(`Server is running on port ${PORT}`);
 });
 
 export default app; 
