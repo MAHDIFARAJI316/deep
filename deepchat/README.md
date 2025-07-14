@@ -72,8 +72,9 @@ npm run dev
 - **Run frontend tests**: `npm test -- --filter=frontend`
 - **Run backend tests**: `npm test -- --filter=backend`
 
-## Linting and Formatting
+##  linting and Formatting
 
 - **Lint all packages**: `npm run lint`
 - **Format all files**: `npm run format`
+
 Linting and formatting are also configured to run automatically on pre-commit. 
