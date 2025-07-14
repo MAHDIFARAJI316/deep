@@ -1,0 +1,46 @@
+{
+  "name": "@deepchat/ui",
+  "version": "2.0.0",
+  "description": "DeepChat 2.0 UI Components - کامپوننت‌های قابل استفاده مجدد با تم Mario",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "framer-motion": "^10.16.4",
+    "tailwindcss": "^3.3.5",
+    "lucide-react": "^0.288.0",
+    "clsx": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.25",
+    "@types/react-dom": "^18.2.11",
+    "@storybook/react": "^7.5.0",
+    "@storybook/react-vite": "^7.5.0",
+    "typescript": "^5.2.2",
+    "jest": "^29.7.0",
+    "@testing-library/react": "^13.4.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "mario",
+    "deepchat",
+    "persian",
+    "rtl"
+  ],
+  "author": "DeepChat Team",
+  "license": "MIT"
+}

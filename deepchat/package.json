@@ -1,18 +1,24 @@
 {
   "name": "deepchat",
+  "version": "2.0.0",
+  "description": "DeepChat 2.0 - پلتفرم پیام‌رسانی خودکار با تم Mario برای بازارهای نوظهور",
   "private": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "test": "turbo test",
+    "clean": "turbo clean",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "turbo": "latest",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.2"
+    "lint-staged": "^15.2.2",
+    "typescript": "^5.2.2"
   },
   "packageManager": "npm@10.5.0",
   "workspaces": [
@@ -24,5 +30,18 @@
       "eslint --fix",
       "prettier --write"
     ]
-  }
+  },
+  "keywords": [
+    "deepchat",
+    "mario",
+    "iran",
+    "persian",
+    "whatsapp",
+    "telegram",
+    "ai",
+    "chatbot",
+    "saas"
+  ],
+  "author": "DeepChat Team",
+  "license": "MIT"
 } 
